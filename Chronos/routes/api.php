@@ -14,14 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::prefix('auth')->group(function () {
     Route::post('/register', [App\Http\Controllers\AuthenticationController::class, 'register']);
     Route::post('/login', [App\Http\Controllers\AuthenticationController::class, 'login']);
     Route::post('/logout', [App\Http\Controllers\AuthenticationController::class, 'logout']);
-    Route::post('/password-reset', [App\Http\Controllers\AuthenticationController::class, 'passwordForgot']);
-    Route::post('/password-reset/{token}', [App\Http\Controllers\AuthenticationController::class, 'passwordReset']);
+    // Route::post('/password-reset', [App\Http\Controllers\AuthenticationController::class, 'passwordForgot']);
+    // Route::post('/password-reset/{token}', [App\Http\Controllers\AuthenticationController::class, 'passwordReset']);
+});
+
+Route::prefix('user')->group(function () {
+    Route::get('/', [App\Http\Controllers\UserController::class, 'getAll']);
+    Route::get('/{id}', [App\Http\Controllers\UserController::class, 'getBy']);
+    Route::patch('/update/{id}', [App\Http\Controllers\UserController::class, 'update']);
+    Route::delete('/delete/{id}', [App\Http\Controllers\UserController::class, 'delete']);
 });
