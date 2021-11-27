@@ -13,7 +13,7 @@ use App\Models\User;
 use Mail;
 
 
-class AuthenticationController extends Controller
+class AuthController extends Controller
 {
     /**
      * Register a new user with unique login and email
@@ -36,7 +36,7 @@ class AuthenticationController extends Controller
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user,
-        ]);
+        ], 200);
     }
 
     /**
@@ -53,9 +53,13 @@ class AuthenticationController extends Controller
         ]);
 
         try {
-            $token = JWTAuth::attempt($credentials);
-            $user = JWTAuth::user();
+            if(! $token = JWTAuth::attempt($credentials)) {
+                return response()->json([
+                    'error' => 'Incorrect login or password'
+                ], 400);
+            }
 
+            $user = JWTAuth::user();
             $user->remember_token = $token;
             $user->save();
             
@@ -64,12 +68,12 @@ class AuthenticationController extends Controller
                 'jwt_token' => $token,
                 'token_type' => 'bearer',
                 'user' => $user,
-            ]);
+            ], 200);
         } catch(\Tymon\JWTAuth\Exceptions $ex) {
             return response()->json([
                 'error' => 'User login exception',
-                'error' => $ex,
-            ]);
+                'exception' => $ex,
+            ], 500);
         }
     }
 
@@ -78,24 +82,26 @@ class AuthenticationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function logout()
+    public function logout(Request $request)
     {
-        if(JWTAuth::check()) {
+        if(! $user = $this->authUser()) {
             return response()->json([
                 'error' => 'Login to start using the service',
-            ]);
+            ], 400);
         }
 
         try {
+            $user->remember_token = null;
+            $user->save();
             auth()->logout(true);
             return response()->json([ 
                 'message' => 'User logout success',
-            ]);
+            ], 200);
         } catch(\Tymon\JWTAuth\Exceptions $ex) {
             return response()->json([
                 'error' => 'User logout exception',
                 'exception' => $ex,
-            ]);
+            ], 500);
         }
     }
 

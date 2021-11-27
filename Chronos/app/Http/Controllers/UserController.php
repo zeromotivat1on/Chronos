@@ -15,7 +15,17 @@ class UserController extends Controller
      */
     public function getAll()
     {
-        return User::all();
+        if(! $user = User::find($id)) {
+            return response()->json([
+                'error' => 'user with id not found',
+                'id' => $id,
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Found user',
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -38,17 +48,25 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(! $user = User::find($id)) {
+            return response()->json([
+                'error' => 'User with id not found',
+                'id' => $id,
+            ], 404);
+        }
+
         $credentials = $request->validate([
             'login'     => ['bail', 'string', 'unique:users', 'min:2', 'max:32'],
             'full_name' => ['bail', 'string', 'min:2', 'max:64'],
             'email'     => ['bail', 'email', 'unique:users', 'min:8', 'max:64'],
             'region'    => ['bail', 'string', 'min:2', 'max:8'],
         ]);
-
-        $user = User::find($id);
-        $credentials = $request->all();   
         $user->update($credentials);
-        return $user;
+
+        return response()->json([
+            'message' => 'User update success',
+            'updated_user' => $user,
+        ], 200);
     }
 
     /**
@@ -59,6 +77,28 @@ class UserController extends Controller
      */
     public function delete($id)
     {
-        return User::destroy($id);
+        if(! User::destroy($id)) {
+            return response()->json([
+                'error' => 'User with id not found',
+                'id' => $id,
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'User delete success',
+        ]);
+    }
+
+    /**
+     * Get all user events
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function events($id)
+    {
+        return response()->json(
+            User::find($id)->events()->get()
+        );
     }
 }

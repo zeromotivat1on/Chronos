@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Event extends Model
 {
@@ -20,6 +21,8 @@ class Event extends Model
         'event_date',
         'color',
         'category',
+        'calendar_id',
+        'owner_id',
     ];
 
     /**
@@ -30,4 +33,9 @@ class Event extends Model
     protected $casts = [
         'event_date' => 'datetime'
     ];
+
+    public function owner()
+    {
+        return $this->hasOne(User::class, 'id', 'owner_id');
+    }
 }

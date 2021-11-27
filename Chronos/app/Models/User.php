@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\Calendar;
+use App\Models\Event;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -53,5 +55,15 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+    
+    public function calendars()
+    {
+        return $this->hasMany(Calendar::class, 'owner_id', 'id');
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'owner_id', 'id');
     }
 }

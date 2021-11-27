@@ -18,7 +18,7 @@ class CreateEventsTable extends Migration
             $table->string('title', 32);
             $table->string('description', 512);
             $table->dateTime('event_date');
-            $table->string('color', 8);
+            $table->string('color', 16);
             $table->enum('category', ['arrangement', 'reminder', 'task']);
             $table->foreignId('calendar_id')->constrained('calendars');
             $table->foreignId('owner_id')->constrained('users');

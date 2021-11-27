@@ -18,7 +18,7 @@ class CreateCalendarsTable extends Migration
             $table->string('title', 32);
             $table->string('description', 512);
             $table->boolean('main')->default(0);
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('owner_id')->constrained('users');
             $table->timestamps();
         });
     }
