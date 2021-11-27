@@ -114,7 +114,8 @@ class EventController extends Controller
     public function owner($id)
     {
         return response()->json(
-            Event::find($id)->owner()->first()
+            Event::find($id)->owner()->first(),
+            200
         );
     }
 }

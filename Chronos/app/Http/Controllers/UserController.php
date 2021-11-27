@@ -9,26 +9,6 @@ use App\Models\User;
 class UserController extends Controller
 {
     /**
-     * Get all users
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getAll()
-    {
-        if(! $user = User::find($id)) {
-            return response()->json([
-                'error' => 'user with id not found',
-                'id' => $id,
-            ]);
-        }
-
-        return response()->json([
-            'message' => 'Found user',
-            'user' => $user,
-        ]);
-    }
-
-    /**
      * Find user by id
      *
      * @param  int  $id
@@ -36,7 +16,17 @@ class UserController extends Controller
      */
     public function getBy($id)
     {
-        return User::find($id);
+        if(! $user = User::find($id)) {
+            return response()->json([
+                'error' => 'User with id not found',
+                'id' => $id,
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Found user',
+            'user' => $user,
+        ]);    
     }
 
     /**
@@ -86,7 +76,7 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'User delete success',
-        ]);
+        ], 200);
     }
 
     /**
@@ -98,7 +88,22 @@ class UserController extends Controller
     public function events($id)
     {
         return response()->json(
-            User::find($id)->events()->get()
+            User::find($id)->events()->get(),
+            200
+        );
+    }
+
+    /**
+     * Get all user calendars
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function calendars($id)
+    {
+        return response()->json(
+            User::find($id)->calendars()->get(),
+            200
         );
     }
 }

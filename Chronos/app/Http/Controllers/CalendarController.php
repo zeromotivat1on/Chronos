@@ -108,7 +108,8 @@ class CalendarController extends Controller
     public function owner($id)
     {
         return response()->json(
-            Calendar::find($id)->owner()->first()
+            Calendar::find($id)->owner()->first(),
+            200
         );
     }
 
@@ -120,7 +121,8 @@ class CalendarController extends Controller
     public function events($id)
     {
         return response()->json(
-            Calendar::find($id)->events()->get()
+            Calendar::find($id)->events()->get(),
+            200
         );
     }
 }

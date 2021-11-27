@@ -19,19 +19,20 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::prefix('auth')->group(function () {
-    Route::post('/register',    [AuthController::class, 'register']);
-    Route::post('/login',       [AuthController::class, 'login']);
-    Route::post('/logout',      [AuthController::class, 'logout']);
-    // Route::post('/password-reset', [App\Http\Controllers\AuthController::class, 'passwordForgot']);
-    // Route::post('/password-reset/{token}', [App\Http\Controllers\AuthController::class, 'passwordReset']);
+    Route::post('/register',                [AuthController::class, 'register']);
+    Route::post('/login',                   [AuthController::class, 'login']);
+    Route::post('/logout',                  [AuthController::class, 'logout']);
+    Route::post('/password-forgot',         [AuthController::class, 'passwordForgot']);
+    Route::post('/password-reset/{token}',  [AuthController::class, 'passwordReset']);
 });
 
 Route::prefix('user')->group(function () {
-    Route::get('/',             [UserController::class, 'getAll']);
-    Route::get('/{id}',         [UserController::class, 'getBy']);
-    Route::get('/events/{id}',  [UserController::class, 'events']);
-    Route::patch('/{id}',       [UserController::class, 'update']);
-    Route::delete('/{id}',      [UserController::class, 'delete']);
+    Route::get('/',                 [UserController::class, 'getAll']);
+    Route::get('/{id}',             [UserController::class, 'getBy']);
+    Route::get('/events/{id}',      [UserController::class, 'events']);
+    Route::get('/calendars/{id}',   [UserController::class, 'calendars']);
+    Route::patch('/{id}',           [UserController::class, 'update']);
+    Route::delete('/{id}',          [UserController::class, 'delete']);
 });
 
 Route::prefix('event')->group(function () {
