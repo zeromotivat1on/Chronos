@@ -1,0 +1,33 @@
+.container {
+    position: relative;
+    margin: 1.5em 0;
+    color: var(--clr-alt-50);
+    background-color: transparent;
+    border: 0;
+    border-radius: 0.6em;
+    outline: 0.1em solid var(--clr-alt-50);
+    width: clamp(16em, 40vw, 36em);
+    font-weight: 600;
+
+    transition: 
+        color var(--t-transition-fast) ease-in,
+        outline-color var(--t-transition-fast) ease-in;;
+}
+.container:after {
+    content: "asd";
+    text-align: right;
+    position: absolute;
+    top: -0.75em;
+    right: 1em;
+    color: inherit;
+    background-color: var(--clr-base);
+    padding: 0 0.7em;
+}
+
+.input {
+    padding: 0.85em 1.5em;
+    width: 100%;
+    font-weight: inherit;
+    color: inherit;
+    font-size: 1em;
+}

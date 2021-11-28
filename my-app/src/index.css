@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+:root {
+  --clr-base: rgba(0, 0, 0, 1);
+  --clr-alt-100: rgba(255, 255, 255, 1);
+  --clr-alt-50: rgba(255, 255, 255, 0.5);
+  --clr-alt-30: rgba(255, 255, 255, 0.3);
+  --clr-alt-20: rgba(255, 255, 255, 0.2);
+  --clr-alt-15: rgba(255, 255, 255, 0.15);
+  --clr-alt-5: rgba(255, 255, 255, 0.05);
+
+  --t-transition-fast: 0.1s;
+  --t-transition-mid: 0.2s;
+  --t-transition-slow: 0.3s;
+}
+
+input {
+  background-color: transparent;
+  border: 0;
+}
+input:focus {
+  outline: 0;
+}

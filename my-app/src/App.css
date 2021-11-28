@@ -1,0 +1,13 @@
+.def-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--clr-base);
+}
+
+.btn-lock {
+  pointer-events: none;
+  opacity: 0.5;
+}

@@ -1,0 +1,27 @@
+.app_name {
+    --font-size: clamp(15rem, 30vw, 20rem);
+    position: absolute;
+    width: 100vw;
+    top: -0.25em;
+    left: 0;
+    color: var(--clr-alt-5);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: var(--font-size);
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+.app_name::after {
+    content: "brand new calendar";
+    position: absolute;
+    text-transform: inherit;
+    text-align: top;
+    top: 5em;
+    left: 0.5em;
+    width: 25%;
+    font-size: calc(var(--font-size) / 6);
+    letter-spacing: 0.5em;
+    white-space: normal;
+}

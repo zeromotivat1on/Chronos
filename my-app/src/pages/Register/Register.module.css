@@ -1,0 +1,122 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.username_input::after {
+    content: "Username";
+}
+.fullname_input::after {
+    content: "Full Name";
+}
+.email_input::after {
+    content: "Email";
+}
+.password_input::after {
+    content: "Password";
+}
+.confirm_password_input::after {
+    content: "Confirm Password";
+} 
+
+.btns {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 3em;
+    font-weight: 600;
+}
+
+.sign_in_btn {
+    color: var(--clr-alt-100);
+    outline: 0.1em solid var(--clr-alt-100);
+    width: 100%;
+    margin-right: 1em;
+    font-weight: inherit;
+
+    transition: transform var(--t-transition-fast) ease-in;
+}
+.sign_in_btn:hover {
+    transform: translateY(-0.2em);
+}
+
+.sign_up_btn {
+    color: var(--clr-base);
+    background-color: var(--clr-alt-100);
+    outline: 0.1em solid var(--clr-alt-100);
+    width: 100%;
+    margin-left: 1em;
+    font-weight: inherit;
+
+    transition: 
+        transform var(--t-transition-fast) ease-in,
+        opacity var(--t-transition-fast) ease-in;;
+}
+.sign_up_btn:hover {
+    transform: translateY(-0.2em);
+}
+
+
+.app_name {
+    --font-size: clamp(15rem, 30vw, 20rem);
+    pointer-events: none;
+    position: absolute;
+    width: 100vw;
+    top: -0.25em;
+    left: 0;
+    color: var(--clr-alt-5);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: var(--font-size);
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+.app_name::after {
+    content: "brand new calendar";
+    pointer-events: none;
+    position: absolute;
+    text-transform: inherit;
+    text-align: top;
+    top: 6.25em;
+    left: 0.5em;
+    width: 25%;
+    font-size: calc(var(--font-size) / 6);
+    letter-spacing: 0.5em;
+}
+
+.page_name {
+    pointer-events: none;
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    padding-left: 0.5rem;
+    text-transform: uppercase;
+    font-size: 6rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--clr-alt-20);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.vertical_new_account {
+    pointer-events: none;
+    position: absolute;
+    font-size: clamp(4rem, 4vw, 6rem);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    right: 5rem;
+    top: 20rem;
+    color: var(--clr-alt-5);
+}
+.vertical_new_account::after {
+    content: "Account";
+    position: absolute;
+    top: 3em;
+}
