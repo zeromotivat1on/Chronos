@@ -1,0 +1,101 @@
+.header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: clamp(12px, 1vw, 1.25rem);
+    padding: 
+        clamp(12px, 5vw, 3rem)
+        clamp(12px, 5vw, 6rem);
+    width: 100%;
+    max-width: 2000px;
+}
+
+.app_name {
+    position: relative;
+    color: var(--clr-alt-100);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-right: clamp(12px, 1vw, 3rem);
+}
+.app_name::after {
+    --p: 0.1em;
+    content: "";
+    position: absolute;
+    bottom: calc(var(--p) * -0.75);
+    left: calc(var(--p) * -1.75);
+    height: 100%;
+    width: 100%;
+    outline: 0.1em solid var(--clr-alt-100);
+    padding: var(--p);
+    border-radius: 0.1em;
+    opacity: 0;
+
+    transition: opacity var(--t-transition-fast) ease-in;
+}
+.app_name:hover::after {
+    opacity: 1;
+}
+
+.nav {
+    width: 100%;
+}
+
+.nav,
+.nav_part {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav_list_item {
+    padding: 0 clamp(6px, 1vw, 1rem);
+}
+
+.nav_link {
+    cursor: pointer;
+    position: relative;
+    color: var(--clr-alt-50);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    padding: 0.5em;
+    transition: color var(--t-transition-mid) ease-in;
+}
+.nav_link:hover {
+    color: var(--clr-alt-100);
+}
+.nav_link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: var(--clr-alt-50);
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition:
+        background-color var(--t-transition-mid) ease-in,
+        transform var(--t-transition-mid) ease-in;
+}
+.nav_link:hover::after {
+    transform: scaleX(1);
+    background-color: var(--clr-alt-100);
+}
+
+@media (max-width: 575px) {
+    .nav {
+        justify-content: right;
+    }
+    .nav_list_item:first-child {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .nav_part:first-child {
+        display: none;
+    }
+}

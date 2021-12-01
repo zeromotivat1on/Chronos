@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Models\User;
+use App\Models\Calendar;
 use Mail;
 
 
@@ -33,6 +34,14 @@ class AuthController extends Controller
 
         $credentials['password'] = Hash::make($credentials['password']);
         $user = User::create($credentials);
+        
+        Calendar::create([
+            'title' => 'Main',
+            'description' => $user->login.' main calendar',
+            'main' => true,
+            'owner_id' => $user->id,
+        ]);
+
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user,
@@ -52,29 +61,22 @@ class AuthController extends Controller
             'password'  => ['bail', 'required', 'string', 'min:4', 'max:256'],
         ]);
 
-        try {
-            if(! $token = JWTAuth::attempt($credentials)) {
-                return response()->json([
-                    'error' => 'Incorrect login or password'
-                ], 400);
-            }
-
-            $user = JWTAuth::user();
-            $user->remember_token = $token;
-            $user->save();
-            
+        if(! $token = JWTAuth::attempt($credentials)) {
             return response()->json([
-                'message' => 'User login success',
-                'jwt_token' => $token,
-                'token_type' => 'bearer',
-                'user' => $user,
-            ], 200);
-        } catch(\Tymon\JWTAuth\Exceptions $ex) {
-            return response()->json([
-                'error' => 'User login exception',
-                'exception' => $ex,
-            ], 500);
+                'error' => 'Incorrect login or password'
+            ], 400);
         }
+
+        $user = JWTAuth::user();
+        $user->remember_token = $token;
+        $user->save();
+        
+        return response()->json([
+            'message' => 'User login success',
+            'jwt_token' => $token,
+            'token_type' => 'bearer',
+            'user' => $user,
+        ], 200);
     }
 
     /**
@@ -84,25 +86,13 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        if(! $user = $this->authUser()) {
-            return response()->json([
-                'error' => 'Login to start using the service',
-            ], 400);
-        }
-
-        try {
-            $user->remember_token = null;
-            $user->save();
-            auth()->logout(true);
-            return response()->json([ 
-                'message' => 'User logout success',
-            ], 200);
-        } catch(\Tymon\JWTAuth\Exceptions $ex) {
-            return response()->json([
-                'error' => 'User logout exception',
-                'exception' => $ex,
-            ], 500);
-        }
+        $user = $this->authUser();
+        $user->remember_token = null;
+        $user->save();
+        auth()->logout(true);
+        return response()->json([ 
+            'message' => 'User logout success',
+        ], 200);
     }
 
     /**

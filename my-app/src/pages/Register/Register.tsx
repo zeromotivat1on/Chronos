@@ -44,7 +44,8 @@ const Register: FunctionComponent<RegisterProps> = (props) => {
             }
     }
 
-    const signUp = async () => {
+    const signUp = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
         const user: User = {
             login: login,
             full_name: fullName,
@@ -56,12 +57,21 @@ const Register: FunctionComponent<RegisterProps> = (props) => {
         console.log(user);
         const response = await post('api/auth/register', user);
         console.log(response);
+        if(response.error || response.errors) {
+            console.log(response.error, response.errors);
+        } else {
+            setLogin('');
+            setFullName('');
+            setEmail('');
+            setPassword('');
+            setPasswordConfirmation('');
+            window.location.href = '/login';
+        }
     }
 
     return (
         <main className='def-page'>
             <span className={css.app_name}>chronos</span>
-            <span className={css.vertical_new_account}>new</span>
             <form className={css.form}>
                 <FormInput 
                     containerClasses={css.username_input}
@@ -87,8 +97,8 @@ const Register: FunctionComponent<RegisterProps> = (props) => {
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     onBlur={(e) => trySwitchSignUpBtn(e)} />
                 <div className={css.btns}>
-                    <Button onClick={() => {}} classes={css.sign_in_btn} text='Sign in' />
-                    <Button type='submit' onClick={() => signUp()} classes={`${css.sign_up_btn} btn-lock`} text='Sign up' />
+                    <Button onClick={() => {window.location.href = '/login'}} classes={css.sign_in_btn} text='Sign in' />
+                    <Button type='submit' onClick={(e) => signUp(e)} classes={`${css.sign_up_btn} btn-lock`} text='Sign up' />
                 </div>
             </form>
             <span className={css.page_name}>register</span>

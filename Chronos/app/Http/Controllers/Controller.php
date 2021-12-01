@@ -12,8 +12,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected function authUser() {
-        $token = explode(' ', request()->header('Authorization'))[1];
+    public function authUser() {
+        if(! $auth = request()->header('Authorization')) {
+            return null;
+        }
+        if(! $bearer = explode(' ', $auth)) {
+            return null;
+        }
+        if(! $token = $bearer[1]) {
+            return null;
+        }
         return User::where('remember_token', $token)->first();
     }
 }

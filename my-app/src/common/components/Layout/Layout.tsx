@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import Header from '../Header/Header';
 import css from './Layout.module.css';
 
 interface LayoutProps {
@@ -7,7 +8,8 @@ interface LayoutProps {
  
 const Layout: FunctionComponent<LayoutProps> = (props) => {
     return (
-        <div>
+        <div className='layout'>
+            <Header />
             {props.children}
         </div>
     );

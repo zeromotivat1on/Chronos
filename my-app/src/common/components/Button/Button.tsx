@@ -6,12 +6,12 @@ export interface ButtonProps {
     classes?: string,
     text?: string,
     type?: buttonType,
-    onClick : () => void,
+    onClick : (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
 }
  
 const Button: FunctionComponent<ButtonProps> = (props) => {
     return (
-        <button type={props.type ?? 'button'} className={`${css.btn} ${props.classes}`} onClick={() => props.onClick()}>{props.text}</button>
+        <button type={props.type ?? 'button'} className={`${css.btn} ${props.classes}`} onClick={(e) => props.onClick(e)}>{props.text}</button>
     );
 }
 

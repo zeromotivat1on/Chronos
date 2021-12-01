@@ -104,19 +104,3 @@
     overflow: hidden;
     text-overflow: clip;
 }
-
-.vertical_new_account {
-    pointer-events: none;
-    position: absolute;
-    font-size: clamp(4rem, 4vw, 6rem);
-    text-transform: uppercase;
-    writing-mode: vertical-rl;
-    right: 5rem;
-    top: 20rem;
-    color: var(--clr-alt-5);
-}
-.vertical_new_account::after {
-    content: "Account";
-    position: absolute;
-    top: 3em;
-}

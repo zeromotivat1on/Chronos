@@ -106,4 +106,19 @@ class UserController extends Controller
             200
         );
     }
+
+
+    /**
+     * Get user main calendar
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function mainCalendar($id)
+    {
+        return response()->json(
+            User::find($id)->calendars()->where('main', true)->first(),
+            200
+        );
+    }
 }

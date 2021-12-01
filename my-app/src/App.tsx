@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LogRegLayout from './common/components/LogRegLayout/LogRegLayout';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import Layout from './common/components/Layout/Layout';
