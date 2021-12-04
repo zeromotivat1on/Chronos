@@ -2,19 +2,19 @@ import { FunctionComponent } from 'react';
 import { post } from '../../http/HttpService';
 import css from './Header.module.css';
 
-export interface HeadderProps {
+export interface HeaderProps {
     
 }
  
-const Headder: FunctionComponent<HeadderProps> = (props) => {
+const Header: FunctionComponent<HeaderProps> = (props) => {
     const logout = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
         const response = await post('api/auth/logout', {});
-        if(response.error) {
-            console.log(response);
-        } else {
+        if(response.status === 200) {
             document.cookie = 'remember_token=;expires=1;'
             window.location.href = '/';
+        } else {
+            console.error(response);
         }
     }
 
@@ -43,4 +43,4 @@ const Headder: FunctionComponent<HeadderProps> = (props) => {
     );
 }
  
-export default Headder;
+export default Header;

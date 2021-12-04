@@ -24,10 +24,7 @@ class CalendarController extends Controller
             ]);
         }
 
-        return response()->json([
-            'message' => 'Found calendar',
-            'calendar' => $calendar,
-        ]);
+        return response()->json($calendar, 200);
     }
 
     /**
@@ -42,14 +39,12 @@ class CalendarController extends Controller
             'title'         => ['bail', 'required', 'string', 'min:2', 'max:32'],
             'description'   => ['bail', 'required', 'string', 'max:512'],
             'main'          => ['bail', 'required', 'bool'],
-            'owner_id'      => ['bail', 'required', 'int']
         ]);
         
+        $user = $this->authUser();
+        $credentials['owner_id'] = $user->id;
         $calendar = Calendar::create($credentials);
-        return response()->json([
-            'message' => 'Calendar successfully created',
-            'calendar' => $calendar,
-        ], 200);
+        return response()->json($calendar, 200);
     }
 
     /**
@@ -74,10 +69,7 @@ class CalendarController extends Controller
         ]);
         $calendar->update($credentials);
 
-        return response()->json([
-            'message' => 'Calendar update success',
-            'updated_event' => $calendar,
-        ], 200);
+        return response()->json($calendar, 200);
     }
 
     /**
@@ -97,7 +89,7 @@ class CalendarController extends Controller
 
         return response()->json([
             'message' => 'Calendar delete success',
-        ]);
+        ], 200);
     }
     
     /**

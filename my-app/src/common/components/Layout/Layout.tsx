@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import Header from '../Header/Header';
 import css from './Layout.module.css';
 

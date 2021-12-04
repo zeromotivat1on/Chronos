@@ -42,10 +42,7 @@ class AuthController extends Controller
             'owner_id' => $user->id,
         ]);
 
-        return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user,
-        ], 200);
+        return response()->json($user, 200);
     }
 
     /**

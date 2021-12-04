@@ -1,20 +1,18 @@
-import { FunctionComponent, useEffect } from 'react';
-import { get } from '../../common/http/HttpService';
+import { FunctionComponent, useState, useEffect } from 'react';
+import Calendar from '../../common/Calendar/Calendar';
+import { post } from '../../common/http/HttpService';
 import css from './Home.module.css';
 
-interface HomeProps {
+export interface HomeProps {
     
 }
  
 const Home: FunctionComponent<HomeProps> = () => {
-    
-    useEffect(() => {}, []);
-
-    return (
-        <main className='def-page'>
-
-        </main>
-    );
+  return (
+    <main className='def-page'>
+      <Calendar id='main'/>
+    </main>
+  );
 }
  
 export default Home;

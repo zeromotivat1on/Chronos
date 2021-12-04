@@ -39,12 +39,13 @@ const Login: FunctionComponent<LoginProps> = (props) => {
         };
         console.log(user);
         const response = await post('api/auth/login', user);
+        const data = await response.data;
         console.log(response);
-        if(response.error || response.errors) {
-            console.log(response.error, response.errors);
-        } else {
-            document.cookie = `remember_token=${response.jwt_token};expires=${new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toUTCString()};`;
+        if(response.status === 200) {
+            document.cookie = `remember_token=${data.jwt_token};expires=${new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toUTCString()};`;
             window.location.href = '/home';
+        } else {
+            console.error(response);
         }
     }
 

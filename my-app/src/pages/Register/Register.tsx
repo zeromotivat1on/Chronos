@@ -57,15 +57,15 @@ const Register: FunctionComponent<RegisterProps> = (props) => {
         console.log(user);
         const response = await post('api/auth/register', user);
         console.log(response);
-        if(response.error || response.errors) {
-            console.log(response.error, response.errors);
-        } else {
+        if(response.status === 200) {
             setLogin('');
             setFullName('');
             setEmail('');
             setPassword('');
             setPasswordConfirmation('');
             window.location.href = '/login';
+        } else {
+            console.error(response);
         }
     }
 

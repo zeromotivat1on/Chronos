@@ -1,0 +1,50 @@
+.fc {
+    width: 70%;
+    outline: none;
+}
+
+.fc .fc-button-primary {
+    background-color: var(--clr-base);
+    border: 0;
+}
+.fc .fc-button-primary:hover {
+    background-color: inherit;
+    outline: 0.15em solid var(--clr-alt-50);
+}
+
+.fc .fc-button-primary.fc-today-button:disabled {
+    color: var(--clr-alt-30);
+}
+.fc .fc-button-primary.fc-today-button {
+    background-color: var(--clr-base);
+}
+
+.fc-toolbar-title {
+    color: var(--clr-alt-50);
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+    background-color: var(--clr-alt-10);
+}
+
+.fc .fc-daygrid-day.fc-day:hover {
+    cursor: pointer;
+    background-color: var(--clr-alt-5);
+}
+
+.fc-event-title {
+    padding: 0 0.25em;
+}
+
+.fc-event-title:hover {
+    background-color: var(--clr-alt-30);
+    border-radius: 0.25em;
+}
+
+.fc-daygrid-event-dot {
+    margin: 0 0.35em;
+}
+
+.fc-event-time {
+    display: none;
+}

@@ -1,0 +1,44 @@
+.calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5em;
+    width: min(100%, 1600px);
+}
+
+.calendar_cell {
+    color: var(--clr-alt-50);
+    font-family: 'Nunito';
+}
+
+.day_header {
+    color: var(--clr-alt-50);
+}
+
+.other {
+    width: fit-content;
+    margin-top: 4em;
+    padding-right: clamp(12px, 5vw, 6rem);
+}
+
+.btn {
+    color: var(--clr-alt-100);
+    background-color: var(--clr-base);
+    outline: 0.1em solid var(--clr-alt-100);
+    width: 100%;
+    margin-left: 1em;
+    font-weight: inherit;
+
+    transition: 
+        transform var(--t-transition-fast) ease-in,
+        opacity var(--t-transition-fast) ease-in;;
+}
+.btn:hover {
+    transform: translateY(-0.2em);
+}
+
+.loading {
+    text-transform: uppercase;
+    color: var(--clr-alt-100);
+}

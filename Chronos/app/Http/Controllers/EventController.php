@@ -24,10 +24,7 @@ class EventController extends Controller
             ]);
         }
 
-        return response()->json([
-            'message' => 'Found event',
-            'event' => $event,
-        ]);
+        return response()->json($event, 200);
     }
 
     /**
@@ -45,14 +42,12 @@ class EventController extends Controller
             'color'         => ['bail', 'required', 'string', 'max:16'],
             'category'      => ['bail', 'required', 'in:arrangement,reminder,task'],
             'calendar_id'   => ['bail', 'required', 'int'],
-            'owner_id'      => ['bail', 'required', 'int'],
         ]);
         
+        $user = $this->authUser();
+        $credentials['owner_id'] = $user->id;
         $event = Event::create($credentials);
-        return response()->json([
-            'message' => 'Event successfully created',
-            'event' => $event,
-        ], 200);
+        return response()->json($event, 200);
     }
 
     /**
@@ -80,10 +75,7 @@ class EventController extends Controller
         ]);
         $event->update($credentials);
 
-        return response()->json([
-            'message' => 'Event update success',
-            'updated_event' => $event,
-        ], 200);
+        return response()->json($event, 200);
     }
 
     /**
@@ -103,7 +95,7 @@ class EventController extends Controller
 
         return response()->json([
             'message' => 'Event delete success',
-        ]);
+        ], 200);
     }
     
     /**

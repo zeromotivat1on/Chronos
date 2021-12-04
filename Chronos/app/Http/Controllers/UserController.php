@@ -114,10 +114,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function mainCalendar($id)
+    public function mainCalendar()
     {
+        $user = $this->authUser();
         return response()->json(
-            User::find($id)->calendars()->where('main', true)->first(),
+            $user->calendars()->where('main', true)->first(),
             200
         );
     }
