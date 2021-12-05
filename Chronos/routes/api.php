@@ -31,8 +31,8 @@ Route::middleware('not.loggedin')->group(function() {
         Route::get('/',                     [UserController::class, 'getAll']);
         Route::get('/{id}',                 [UserController::class, 'getBy']);
         Route::get('/events/{id}',          [UserController::class, 'events']);
-        Route::get('/calendars/{id}',       [UserController::class, 'calendars']);
-        Route::post('/main-calendar',        [UserController::class, 'mainCalendar']);
+        Route::post('/calendars',           [UserController::class, 'calendars']);
+        Route::post('/main-calendar',       [UserController::class, 'mainCalendar']);
         Route::patch('/{id}',               [UserController::class, 'update']);
         Route::delete('/{id}',              [UserController::class, 'delete']);
     });

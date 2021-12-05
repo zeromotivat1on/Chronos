@@ -38,7 +38,8 @@
     transform: translateY(-0.2em);
 }
 
-.loading {
+.loading,
+.calendar_title {
     text-transform: uppercase;
     color: var(--clr-alt-100);
 }

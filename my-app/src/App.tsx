@@ -4,6 +4,8 @@ import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import Layout from './common/components/Layout/Layout';
 import Home from './pages/Home/Home';
+import Calendars from './pages/Calendars/Calendars';
+import CalendarPage from './pages/CalendarPage/CalendarPage';
 import './App.css';
 
 const App = () => {
@@ -17,6 +19,8 @@ const App = () => {
         <Layout>
           <Routes>
             <Route path='/home' element={<Home />}></Route>
+            <Route path='/calendars' element={<Calendars />}></Route>
+            <Route path='/calendar/:id' element={<CalendarPage />}></Route>
           </Routes>
         </Layout>
     </BrowserRouter>

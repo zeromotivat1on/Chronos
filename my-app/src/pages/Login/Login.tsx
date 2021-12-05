@@ -51,24 +51,24 @@ const Login: FunctionComponent<LoginProps> = (props) => {
 
     return (
         <main className='def-page'>
-        <span className={css.app_name}>chronos</span>
-        <form className={css.form}>
-            <FormInput 
-                containerClasses={css.username_input}
-                onChange={(e) => setLogin(e.target.value)}
-                onBlur={(e) => trySwitchSignInBtn(e)} />
-            <FormInput 
-                containerClasses={css.password_input} 
-                type='password'
-                onChange={(e) => setPassword(e.target.value)}
-                onBlur={(e) => trySwitchSignInBtn(e)} />
-            <div className={css.btns}>
-                <Button type='submit' onClick={() => {}} classes={css.sign_up_btn}text='Sign up' />
-                <Button onClick={(e) => signIn(e)} classes={`${css.sign_in_btn} btn-lock`} text='Sign in' />
-            </div>
-        </form>
-        <span className={css.page_name}>login</span>
-    </main>
+            <span className={css.app_name}>chronos</span>
+            <form className={css.form}>
+                <FormInput 
+                    containerClasses={css.username_input}
+                    onChange={(e) => setLogin(e.target.value)}
+                    onBlur={(e) => trySwitchSignInBtn(e)} />
+                <FormInput 
+                    containerClasses={css.password_input} 
+                    type='password'
+                    onChange={(e) => setPassword(e.target.value)}
+                    onBlur={(e) => trySwitchSignInBtn(e)} />
+                <div className={css.btns}>
+                    <Button type='submit' onClick={() => {}} classes={css.sign_up_btn}text='Sign up' />
+                    <Button onClick={(e) => signIn(e)} classes={`${css.sign_in_btn} btn-lock`} text='Sign in' />
+                </div>
+            </form>
+            <span className={css.page_name}>login</span>
+        </main>
     );
 }
  
